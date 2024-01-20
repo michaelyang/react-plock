@@ -5,7 +5,7 @@ export function useMediaValues(
   columns: number[],
   gap: number[]
 ) {
-  const [values, setValues] = React.useState({ columns: 1, gap: 1 });
+  const [values, setValues] = React.useState({ columns: 0, gap: 0 });
 
   React.useEffect(() => {
     if (!medias) {
@@ -75,6 +75,10 @@ export function Masonry<T>({
     createSafeArray(config.gap)
   );
 
+  if (!columns) {
+    return null;
+  }
+  
   const chunks = createChunks<T>(items, columns);
   const dataColumns = createDataColumns<T>(chunks, columns);
 
